@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
+const fs = require('fs');
 
 
 const promptUser = () => {
@@ -121,25 +121,23 @@ const promptProject = protfolioData => {
             console.log('going into the if');
             return promptProject(protfolioData);
         } else {
-            console.log('going into the else', portfolioData.confirmAddProject);
             return portfolioData;
         }
     });
 };
-// promptUser().then(answers => console.log(answers));
+//promptUser().then(answers => console.log(answers));
 promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        console.log(portfolioData);
+       const pageHTML = generatePage();
+
+         fs.writeFile('index.html',pageHTML,err =>{
+             if(err) throw err;
+
+    } );
+
+
     });
 
-// const generatePage = require('./src/page-template.js');
-
-// const pageHTML = generatePage(name, github);
-
-//     fs.writeFile('index.html',pageHTML,err =>{
-//         if(err) throw err;
-
-//         console.log('Protfolio complete! check out index.html to see the ouput!');
-//     } )
+const generatePage = require('./src/page-template.js');
 
