@@ -1,3 +1,27 @@
+//create the about section
+const generateAbout = aboutText => {
+    if(!aboutText){
+        return '';
+    }
+    return `
+    <section class="my-3" id="about">
+    <h2 class="text-dark bg-primary p-2 display-inline-block">About Me</h2>
+    <p>${aboutText}</p>
+    </section>
+    `
+};
+
+const generateProjects = projectsArr =>{
+    return `
+    <section class="my-3" id="portfolio">
+    <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
+    <div class="flex-row justify-space-between">
+      <!-- Leaving this empty as we'll dynamically insert project HTML here -->
+    </div>
+  </section>
+    `
+}
+
 module.exports = templateData => {
     const { projects, about, ...header } = templateData;
     console.log('header:', header, 'projects:', projects, 'about:', about);
@@ -26,7 +50,8 @@ module.exports = templateData => {
         </div>
       </header>
       <main class="container my-5">
-  
+      ${generateAbout(about)}
+      ${generateProjects(projects)}
       </main>
       <footer class="container text-center py-3">
         <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
